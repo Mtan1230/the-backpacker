@@ -2,9 +2,13 @@
   "name": "the-backpacker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npx eslint **/*.js --quiet; exit 0",
+    "test": "npm run lint",
+    "start": "node server.js",
+    "watch": "nodemon server",
+    "seed": "node seeds/index.js"
   },
   "keywords": [],
   "author": "",
@@ -13,12 +17,15 @@
     "bcrypt": "^5.1.0",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "express-handlebars": "^7.0.7",
     "express-session": "^1.17.3",
-    "express.js": "^1.0.0",
-    "handlebars": "^4.7.7",
     "mysql2": "^3.5.1",
     "openai": "^3.3.0",
     "sequelize": "^6.32.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.44.0",
+    "nodemon": "^3.0.1"
   }
 }
