@@ -1,3 +1,11 @@
 {{#each posts as |post|}}
-{{> post-details}}
+<div class="card mt-4">
+    <div class="card-header bg-dark">
+        {{ post.title }}
+        <div class="text-end">Submitted by {{ traveller.username }}, on {{ format_date post.createdAt}}</div>
+    </div>
+    <div class="card-body text-dark">
+        <p class="card-text">{{ post.text}}</p>
+    </div>
+</div>
 {{/each}}

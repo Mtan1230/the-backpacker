@@ -2,14 +2,14 @@ const { Post } = require('../models');
 
 const postData = [
   {
-    title: 'What is MVC?',
-    text: 'MVC, short for Model, View, and Controller, is a methodology or architectural pattern used for efficiently relating the user interface to underlying data models and organizing to relate the application code. MVC is primarily used to separate an application into three main components: Model, View, and Controller.',
-    user_id: 1
+    title: 'How expensive are Cafes and Shops in Paris?',
+    text: 'You’ll find that cafes and shops are more expensive the closer they are to the main attractions such as the Eiffel Tower and Triumph Arch. Walk a few blocks from the main areas to find more authentic and less expensive establishments!',
+    traveller_id: 1
   },
   {
-    title: 'What is object-oriented programming?',
-    text: 'Object-oriented programming (OOP) is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior.',
-    user_id: 1
+    title: 'How many days should I stay in Paris?',
+    text: 'While three days is better than nothing, I think you need more time than that. Ideally, I think you should plan on spending at least five days in Paris in order to see the bare minimum of what the City of Love has to offer. There’s just too much to do!',
+    traveller_id: 1
   }
 ];
 
