@@ -10,6 +10,7 @@
 }
 
 body {
+  background-image: url('../images/shutterstock_102245596.jpeg');
   font-family: Arial;
   margin: 0;
   display: flex;
