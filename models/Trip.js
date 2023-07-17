@@ -17,7 +17,7 @@ Trip.init(
       type: DataTypes.DECIMAL(10, 2),
       allowNull: true
     },
-    traveller_amount: {
+    number_traveller: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1

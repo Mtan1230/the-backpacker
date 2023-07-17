@@ -1,6 +1,4 @@
-const { Location } = require('../models');
-
-const locationData = [
+[
   {
     "location_name": "London"
   },
@@ -16,7 +14,4 @@ const locationData = [
   {
     "location_name": "Los Angeles"
   }
-];
-const seedLocation = () => Location.bulkCreate(locationData);
-
-module.exports = seedLocation;
+]
