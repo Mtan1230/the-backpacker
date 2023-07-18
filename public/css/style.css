@@ -108,11 +108,12 @@ img {
 /* CARDS */
 .card {
   margin: 20px;
-  flex: 0 1 300px;
+  /* flex: 0 1 300px; */
   border: 7px double var(--dark);
   border-radius: 10px;
   background-color: var(--light);
   color: var(--dark);
+  width: 100%;
 }
 
 .login-card {
@@ -161,4 +162,9 @@ img {
   flex-flow: column wrap;
   align-content: flex-start;
   align-items: center;
+}
+
+textarea {
+  width: 94%;
+  margin: 3%;
 }

@@ -1,12 +1,14 @@
 const router = require('express').Router();
-const { User, Post } = require('../models');
+const { Traveller, Post, Comment } = require('../models');
+const withAuth = require('../utils/auth');
+
 
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
         {
-          model: User,
+          model: Traveller,
           attributes: ['username'],
         },
       ],
@@ -25,15 +27,30 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/dashboard', async (req, res) => {
-  // If the user is not logged in, redirect the user to the login page
-  if (!req.session.loggedIn) {
-    res.redirect('/login');
-  } else {
-    // If the user is logged in,
-
-    res.render('dashboard');
-
+router.get('/post/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: Traveller,
+          attributes: ['username'],
+        },
+        {
+          model: Comment,
+          include: [
+            {
+              model: Traveller,
+              attributes: ['username'],
+            }
+          ]
+        }
+      ],
+    });
+    const post = postData.get({ plain: true });
+    res.render('post', { post, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 

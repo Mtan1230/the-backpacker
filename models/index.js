@@ -1,21 +1,53 @@
-const User = require('./User');
+const Traveller = require('./Traveller');
 const Post = require('./Post');
-const GoogleUser = require('./GoogleUser');
+const Location = require('./Location');
+const Trip = require('./Trip');
+const Comment = require('./Comment');
 
-User.hasMany(Post, {
-  foreignKey: 'user_id',
+Traveller.hasMany(Post, {
+  foreignKey: 'traveller_id',
 });
 
-Post.belongsTo(User, {
-  foreignKey: 'user_id',
+Post.belongsTo(Traveller, {
+  foreignKey: 'traveller_id',
 });
 
-// GoogleUser.hasMany(Post, {
-//   foreignKey: 'user_id',
-// });
+Traveller.hasMany(Comment, {
+  foreignKey: 'traveller_id',
+});
 
-// Post.belongsTo(GoogleUser, {
-//   foreignKey: 'user_id',
-// });
+Comment.belongsTo(Traveller, {
+  foreignKey: 'traveller_id',
+});
 
-module.exports = { User, Post, GoogleUser };
+Post.hasMany(Comment, {
+  foreignKey: 'post_id',
+});
+
+Comment.belongsTo(Post, {
+  foreignKey: 'post_id',
+});
+
+Traveller.belongsToMany(Location, {
+  // Define the third table needed to store the foreign keys
+  through: {
+    model: Trip,
+    unique: false
+  },
+  // Define an alias for when data is retrieved
+  foreignKey: 'traveller_id',
+  as: 'planned_trips'
+});
+
+Location.belongsToMany(Traveller, {
+  // Define the third table needed to store the foreign keys
+  through: {
+    model: Trip,
+    unique: false
+  },
+  // Define an alias for when data is retrieved
+  foreignKey: 'location_id',
+  as: 'location_travellers'
+});
+
+module.exports = { Traveller, Post, Location, Trip, Comment };
