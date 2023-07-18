@@ -3,6 +3,7 @@ const { Location, Trip } = require('../models');
 const sequelize = require('../config/connection');
 const seedPost = require('./postData');
 const seedTraveller = require('./travellerData');
+const seedComment = require('./commentData');
 const locationSeedData = require('./locationSeedData.json');
 
 const seedDatabase = async () => {
@@ -12,6 +13,8 @@ const seedDatabase = async () => {
   await seedTraveller();
 
   await seedPost();
+
+  await seedComment();
 
   const locations = await Location.bulkCreate(locationSeedData);
 

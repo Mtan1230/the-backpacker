@@ -1,1 +1,7 @@
-<h2>This is Dashboard</h2>
+{{#each posts as |post|}}
+{{> user-post}}
+{{/each}}
+
+<a href="/dashboard/create">
+<button class="btn post-btn">+ New Post</button>
+</a>

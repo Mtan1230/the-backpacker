@@ -1,0 +1,19 @@
+<section class="card">
+  <h2 class="page-title">Edit Post</h2>
+  <form class="form">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input class="form-input" type="text" id="title" value="{{post.title}}"/>
+    </div>
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea name="content" id="content" rows="5">{{post.text}}</textarea>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary update-post-btn" type="submit">Update Post</button>
+      <button class="btn btn-primary delete-post-btn" type="submit">Delete Post</button>
+    </div>
+  </form>
+</section>
+
+<script src="/js/editPost.js"></script>
