@@ -11,23 +11,19 @@ router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    req.session.save(() => {
-      req.session.loggedIn = true;
-      res.redirect('/dashboard');
-    });
+    res.redirect('/dashboard');
   }
 );
 
 // @desc    Logout user
 // @route   /auth/logout
-router.get('/logout', (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
+router.get('/logout', (req, res, next) => {
+  req.logout((error) => {
+    if (error) {
+      return next(error);
+    }
+    res.redirect('/');
+  });
 });
 
 module.exports = router;

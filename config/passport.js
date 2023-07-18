@@ -10,7 +10,6 @@ module.exports = function (passport) {
         callbackURL: '/auth/google/callback',
       },
       async (accessToken, refreshToken, profile, done) => {
-        console.log(profile);
         const newUser = {
           google_id: profile.id,
           username: profile.displayName,
@@ -18,8 +17,7 @@ module.exports = function (passport) {
         };
 
         try {
-          const user = await GoogleUser.findOne({where: { google_id: profile.id }});
-
+          let user = await GoogleUser.findOne({ where: { google_id: profile.id } });
           if (user) {
             done(null, user);
           } else {
@@ -34,10 +32,14 @@ module.exports = function (passport) {
   );
 
   passport.serializeUser((user, done) => {
-    done(null, user.google_id);
+    done(null, user);
   });
 
-  passport.deserializeUser((id, done) => {
-    GoogleUser.findOne({where: {google_id: id}}, (err, user) => done(err, user));
+  passport.deserializeUser((user, done) => {
+    GoogleUser.findByPk(user.id)
+      .then((user) => {
+        done(null, user);
+      })
+      .catch((err) => done(err));
   });
 };
