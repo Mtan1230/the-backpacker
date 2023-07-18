@@ -2,6 +2,7 @@ const Traveller = require('./Traveller');
 const Post = require('./Post');
 const Location = require('./Location');
 const Trip = require('./Trip');
+const Comment = require('./Comment');
 
 Traveller.hasMany(Post, {
   foreignKey: 'traveller_id',
@@ -9,6 +10,22 @@ Traveller.hasMany(Post, {
 
 Post.belongsTo(Traveller, {
   foreignKey: 'traveller_id',
+});
+
+Traveller.hasMany(Comment, {
+  foreignKey: 'traveller_id',
+});
+
+Comment.belongsTo(Traveller, {
+  foreignKey: 'traveller_id',
+});
+
+Post.hasMany(Comment, {
+  foreignKey: 'post_id',
+});
+
+Comment.belongsTo(Post, {
+  foreignKey: 'post_id',
 });
 
 Traveller.belongsToMany(Location, {
@@ -33,4 +50,4 @@ Location.belongsToMany(Traveller, {
   as: 'location_travellers'
 });
 
-module.exports = { Traveller, Post, Location, Trip };
+module.exports = { Traveller, Post, Location, Trip, Comment };
