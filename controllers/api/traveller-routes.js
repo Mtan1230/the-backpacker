@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { Traveller } = require('../../models');
 
-
 // Signup - Create new traveller
 router.post('/signup', async (req, res) => {
   try {
@@ -9,6 +8,8 @@ router.post('/signup', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.userId = travellerData.dataValues.id;
+
       res
         .status(200)
         .json({ traveller: travellerData, message: 'You are now logged in!' });
@@ -44,11 +45,12 @@ router.post('/login', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      req.session.userId = travellerData.dataValues.id;
+
       res
         .status(200)
         .json({ traveller: travellerData, message: 'You are now logged in!' });
     });
-    
   } catch (err) {
     res.status(400).json(err);
   }
