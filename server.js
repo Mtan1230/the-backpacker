@@ -1,4 +1,5 @@
 const path = require('path');
+const cloudinary = require('cloudinary');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
@@ -14,6 +15,12 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({ helpers });
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET
+});
 
 const sess = {
   secret: process.env.SESS_SECRET,
