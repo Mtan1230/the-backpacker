@@ -91,6 +91,12 @@ nav a:hover {
   color: dark;
 }
 
+.btn.comment-btn {
+  background-color: green;
+  color: #182c23;
+}
+
+
 img {
   max-width: 100%;
   height: auto;
