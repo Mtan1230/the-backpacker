@@ -28,7 +28,7 @@ const seedDatabase = async () => {
     // Create a new trip with random `trip_budget` and `number of travellers` values, but with ids selected above
     await Trip.create({
       trip_budget: (Math.random() * 10000 + 1000).toFixed(2),
-      number_traveller: Math.floor(Math.random() * 10) + 1,
+      number_traveller: Math.floor(Math.random() * 10) - 1,
       traveller_id: 1,
       location_id: randomLocationId
     }).catch((err) => {

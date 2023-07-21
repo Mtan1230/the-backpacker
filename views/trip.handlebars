@@ -2,7 +2,7 @@
 <section class="card-planner" id="planner">
     <header>
         <h2>Plan your trip!
-            </h2>
+        </h2>
     </header>
     <div class="form-content">
         <form class="form-content" id="form">
@@ -16,9 +16,13 @@
         </form>
     </div>
     <div class="trip-result">
-        <p>ticket price <span id="trip-result-price"></span> </p>
-        <p>departure time<span id="trip-result-departure-time"></span></p>
-        <p>arrival time<span id="trip-result-arrival-time"></span></p>
+        <p>Ticket price<span id="trip-result-price" type="text" class="result-content"></span></p>
+        <form class="form-content">
+            <label class="result-content" for="time">Departure time</label>
+            <input id="departure-time" type="time" class="result-content">
+            <label class="result-content" for="time">Arrival time</label>
+            <input id="arrival-time" type="time" class="result-content">
+        </form>
     </div>
 </section>
 <script src="/js/trip-handler.js"></script>
