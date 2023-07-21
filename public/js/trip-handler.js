@@ -6,20 +6,20 @@ const tripHandler = async (e) => {
         destination: document.getElementById('destination').value,
         departure: document.getElementById('departure').value
     }
-
     const response = await fetch('/api/trip/search', {
         headers: { 'Content-Type': 'application/json' },
         method: 'POST',
         body: JSON.stringify(payload)
-    })
-    .then(res => res.json())
-
+    }).then(res => res.json())
+    //Convert the json array of objects into a map
+    const json = response.result.data.flightOffers
+    const map = new Map(Object.entries(json))
     const priceEl = document.querySelector('#trip-result-price');
-    const departuretimeEl = document.querySelector('#trip-result-departure-time');
-    const arrivaltimeEl = document.querySelector('#trip-result-arrival-time');
-    // temporary placeholder properties
-    priceEl.textContent = response.price
-    departuretimeEl.textContent = response.departuretime
-    arrivaltimeEl.textContent = response.arrivaltime
+    const departureEl = document.querySelector('#trip-result-departure');
+    const arrivalEl = document.querySelector('#trip-result-arrival');
+    // Total price per adult converted in USD (1 USD = 1.11 EUR)
+    priceEl.textContent = Math.round((map.get("0").price.total) * 1.11)
+    departureEl.textContent = (map.get("0").itineraries[0].segments[0].departure.at);
+    arrivalEl.textContent = (map.get("0").itineraries[0].segments[1].arrival.at);
 }
 document.querySelector('#submit-btn').addEventListener('click', tripHandler);
