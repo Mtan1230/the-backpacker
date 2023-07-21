@@ -21,14 +21,14 @@ router.post('/search', async (req, res) => {
       keyword: req.body.destination,
       subType: Amadeus.location.any,
     })
-  const amadeusleavinglocationone = amadeusleavinglocations.data[0]
-  const amadeusdestinationlocationone = amadeusdestinationlocations.data[0]
+  const amadeus_leavinglocation_one = amadeusleavinglocations.data[0]
+  const amadeus_destinationlocation_one = amadeusdestinationlocations.data[0]
 
   // Confirm availability and price from NYC to SYD in summer 2023
-  let leavingFrom = amadeusleavinglocationone.iataCode;
-  let destination = amadeusdestinationlocationone.iataCode;
+  let leavingFrom = amadeus_leavinglocation_one.iataCode;
+  let destination = amadeus_destinationlocation_one.iataCode;
   let departure = req.body.departure;
-  let number_traveller = Math.floor(Math.random() * 10) - 1;
+  let number_traveller = Math.floor(Math.random() * 5) + 1;
 
   amadeus.shopping.flightOffersSearch.get({
     originLocationCode: leavingFrom,
@@ -54,6 +54,7 @@ router.post('/search', async (req, res) => {
       console.error(error);
       res.status(500).json({ error, message: "Amadeus failed to get the flight offers search" });
     });
+    
 });
 
 module.exports = router;
