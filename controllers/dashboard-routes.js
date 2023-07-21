@@ -4,7 +4,8 @@ const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
-    const postData = await Post.findAll({ where: { traveller_id: req.session.userId } });
+    //Todo: combine User and GoogleUser models
+    const postData = await Post.findAll({ where: { traveller_id: req.session.userId || req.user.id} });
 
     if (postData.length) {
       const posts = postData.map((post) => post.get({ plain: true }));
