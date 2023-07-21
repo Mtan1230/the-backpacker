@@ -22,7 +22,7 @@ Traveller.init(
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: true,
       validate: {
         isEmail: true,
@@ -30,17 +30,26 @@ Traveller.init(
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [6],
       },
+    },
+    google_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    image: {
+      type: DataTypes.STRING,
     },
   },
   {
     hooks: {
       async beforeCreate(newUserData) {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
+        if (newUserData.password) {
+          newUserData.password = await bcrypt.hash(newUserData.password, 10);
+          return newUserData;
+        }
       },
     },
     sequelize,

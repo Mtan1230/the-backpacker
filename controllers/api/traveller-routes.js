@@ -57,9 +57,16 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-router.post('/logout', async (req, res) => {
+router.post('/logout', async (req, res, next) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else if (req.isAuthenticated()) {
+    req.logout((err) => {
+      if (err) {
+        return next(err);
+      }
       res.status(204).end();
     });
   } else {

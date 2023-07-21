@@ -3,6 +3,7 @@
     <h3>{{post.title}}</h3>
     <span>Powered by {{post.traveller.username}} on {{format_date post.createdAt}} at {{format_time post.createdAt}}</span>
   </header>
+  <img src="{{image}}" alt="">
   <p>{{post.text}}</p>
 </section>
 {{#each post.comments as |comment|}}
