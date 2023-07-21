@@ -25,7 +25,7 @@ router.get(`/city-and-airport-search/:parameter`, (req, res) => {
 
 // CREATE a trip by searching cheapest flights using Amadeus
 router.post('/search', async (req, res) => {
-
+  
   const amadeus = new Amadeus({
     clientId: 'f7FtPkofIucCEZGd1j1nQ2d2HlKHS3rG',
     clientSecret: 'jeAA44fFVLSyGIsX',

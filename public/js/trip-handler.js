@@ -1,14 +1,24 @@
-const addPost = async (e) => {
+const tripHandler = async (e) => {
     e.preventDefault();
     //Add event listener Funtion to retrieve values from traveller
-    const form = $(document.getElementById('form'));
-    form.click(function (e) {
+    const payload = {
+        leavingFrom: document.getElementById('leavingFrom').value,
+        destination: document.getElementById('destination').value,
+        departure: document.getElementById('departure').value
+    }
 
-        let leavingFrom = document.getElementById('leavingFrom').value;
-        let destination = document.getElementById('destination').value;
-        let departure = document.getElementById('departure').value;
-        let number_traveller = Math.floor(Math.random() * 10) + 1;
-
+    const response = await fetch('/api/search/trip', {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+        body: JSON.stringify(payload)
     });
+
+    const priceEl = document.querySelector('#trip-result-price');
+    const departuretimeEl = document.querySelector('#trip-result-departure-time');
+    const arrivaltimeEl = document.querySelector('#trip-result-arrival-time');
+    // temporary placeholder properties
+    priceEl.textContent = response.price
+    departuretimeEl = response.departuretime
+    arrivaltimeEl = response.arrivaltime
 }
-document.querySelector('.add-post-btn').addEventListener('click', addPost);
+document.querySelector('#submit-btn').addEventListener('click', tripHandler);
