@@ -2,7 +2,7 @@
 <section class="card-planner" id="planner">
     <header>
         <h2>Plan your trip!
-            </h2>
+        </h2>
     </header>
     <div class="form-content">
         <form class="form-content" id="form">
@@ -13,6 +13,13 @@
             <label class="date-label" for="date">Departing on</label>
             <input id="departure" type="date" class="form-input input-date" name="date" required>
             <button id="submit-btn" type="submit" class="input-submit" name="submit">Submit</button>
+        </form>
+    </div>
+    <div class="trip-result">
+        <p>Total price in economy class, in USD: <span id="trip-result-price" type="text" class="spanclass"></span></p>
+        <p>Your Itineraries are listed below: <span id="trip-result-itineraries" type="text" class="spanclass"></span></p>
+            <p>Departure: <span id="trip-result-departure" type="date" class="yyyy-MM-dd'T'HH:mm:ss.SSS"></span></p>
+            <p>Arrival: <span id="trip-result-arrival" type="date" class="yyyy-MM-dd'T'HH:mm:ss.SSS"></span></p>
         </form>
     </div>
 </section>
