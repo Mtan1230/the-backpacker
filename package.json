@@ -14,7 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.4.0",
+
+    "amadeus": "^8.1.0",
     "bcrypt": "^5.1.0",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.3.1",
