@@ -8,7 +8,7 @@ router.post('/', withAuth, async (req, res) => {
       {
         title: req.body.title,
         text: req.body.content,
-        traveller_id: req.session.userId
+        traveller_id: req.session.userId || req.user.id
       }
     );
 
@@ -28,7 +28,7 @@ router.post('/:id', withAuth, async (req, res) => {
     if (postData) {
       const commentData = Comment.create({
         text: req.body.message,
-        traveller_id: req.session.userId,
+        traveller_id: req.session.userId || req.user.id,
         post_id: parseInt(req.params.id)
       });
       res.status(200).json(commentData);

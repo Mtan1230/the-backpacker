@@ -1,7 +1,5 @@
 const router = require('express').Router();
 const { Traveller, Post, Comment } = require('../models');
-const withAuth = require('../utils/auth');
-
 
 router.get('/', async (req, res) => {
   try {
@@ -19,7 +17,7 @@ router.get('/', async (req, res) => {
     );
     res.render('homepage', {
       posts,
-      loggedIn: req.session.loggedIn,
+      loggedIn: req.session.loggedIn || req.isAuthenticated(),
     });
   } catch (err) {
     console.log(err);
@@ -27,7 +25,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/post/:id', withAuth, async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
@@ -47,7 +45,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
       ],
     });
     const post = postData.get({ plain: true });
-    res.render('post', { post, loggedIn: req.session.loggedIn });
+    res.render('post', { post, loggedIn: req.session.loggedIn || req.isAuthenticated() });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -55,7 +53,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.loggedIn || req.isAuthenticated()) {
     res.redirect('/');
     return;
   }
