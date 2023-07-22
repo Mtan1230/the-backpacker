@@ -2,6 +2,7 @@ const router = require('express').Router();
 const travellerRoutes = require('./traveller-routes');
 const postRoutes = require('./post-routes');
 const locationRoutes = require('./location-routes');
+const createtripRoutes = require('./createtrip-routes');
 
 router.use('/travellers', travellerRoutes);
 router.use('/trip', createtripRoutes);
