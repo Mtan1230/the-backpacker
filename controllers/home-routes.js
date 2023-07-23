@@ -37,20 +37,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @desc    Single post page
+// @route   /post/:id
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
         {
           model: Traveller,
-          attributes: ['username'],
+          attributes: ['username', 'image'],
         },
         {
           model: Comment,
           include: [
             {
               model: Traveller,
-              attributes: ['username'],
+              attributes: ['username', 'image'],
             }
           ]
         }

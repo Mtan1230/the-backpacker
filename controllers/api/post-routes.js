@@ -23,6 +23,8 @@ router.post('/', withAuth, upload.single('image'), async (req, res) => {
   }
 });
 
+// @desc    Add comment
+// @route   POST /api/post/:id
 router.post('/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
