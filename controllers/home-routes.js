@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Traveller, Post, Comment } = require('../models');
-const { withAuth, isGuest } = require('../utils/auth');
+const { isGuest } = require('../utils/auth');
 
 // @desc    homepage
 // @route   /
@@ -74,23 +74,6 @@ router.get('/signup', isGuest, (req, res) => {
 // @route   /login
 router.get('/login', isGuest, (req, res) => {
   res.render('login');
-});
-
-router.get('/logout', async (req, res, next) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.redirect('/');
-    });
-  } else if (req.isAuthenticated()) {
-    req.logout((err) => {
-      if (err) {
-        return next(err);
-      }
-      res.redirect('/');
-    });
-  } else {
-    res.status(404).end();
-  }
 });
 
 module.exports = router;

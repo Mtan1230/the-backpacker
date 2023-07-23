@@ -16,7 +16,7 @@ router.get(
 );
 
 // @desc    Google auth logout
-// @route   /auth/logout
+// @route   GET /api/auth/logout
 router.get('/logout', (req, res, next) => {
   req.logout((error) => {
     if (error) {

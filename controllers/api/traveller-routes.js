@@ -62,16 +62,17 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Logout
-router.post('/logout', async (req, res, next) => {
+// @desc    Logout
+// @route   /api/travellers/logout
+router.get('/logout', (req, res, next) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.redirect('/');
     });
   } else if (req.isAuthenticated()) {
-    req.logout((err) => {
-      if (err) {
-        return next(err);
+    req.logout((error) => {
+      if (error) {
+        return next(error);
       }
       res.redirect('/');
     });
