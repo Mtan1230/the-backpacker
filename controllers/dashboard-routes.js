@@ -26,13 +26,10 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+// @desc    Dashboard create post page
+// @route   /dashboard/create
 router.get('/create', withAuth, async (req, res) => {
-  try {
-    res.render('dashboard-create', { loggedIn: req.session.loggedIn || req.isAuthenticated() });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
+  res.render('dashboard-create', { loggedIn: req.session.loggedIn || req.isAuthenticated() });
 });
 
 router.get('/post/:id', withAuth, async (req, res) => {

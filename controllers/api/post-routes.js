@@ -3,9 +3,10 @@ const { Post, Comment } = require('../../models');
 const { withAuth } = require('../../utils/auth');
 const upload = require('../../config/cloudinary').upload;
 
+// @desc    Add post
+// @route   POST /api/post
 router.post('/', withAuth, upload.single('image'), async (req, res) => {
   try {
-
     const postData = await Post.create(
       {
         title: req.body.title,
