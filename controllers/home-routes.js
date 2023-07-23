@@ -3,7 +3,7 @@ const { Traveller, Post, Comment } = require('../models');
 const { withAuth, isGuest } = require('../utils/auth');
 
 // @desc    homepage
-// @route   GET /
+// @route   /
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -70,10 +70,9 @@ router.get('/signup', isGuest, (req, res) => {
   res.render('signup');
 });
 
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn || req.isAuthenticated()) {
-    res.redirect('/');
-  }
+// @desc    Login page
+// @route   /login
+router.get('/login', isGuest, (req, res) => {
   res.render('login');
 });
 

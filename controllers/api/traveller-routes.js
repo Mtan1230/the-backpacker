@@ -25,7 +25,8 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// Login
+// @desc    Login
+// @route   /api/travellers/login
 router.post('/login', async (req, res) => {
   try {
     const travellerData = await Traveller.findOne({
@@ -39,8 +40,8 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
-    const validPassword = await travellerData.checkPassword(req.body.password);
 
+    const validPassword = await travellerData.checkPassword(req.body.password);
     if (!validPassword) {
       res
         .status(400)
