@@ -1,3 +1,13 @@
-{{#each posts as |post|}}
-{{>post-details}}
-{{/each}}
+<div class="tabs">
+  <ul>
+    <li class="is-active"><a href="/">For you</a></li>
+    <li><a href="">Following</a></li>
+  </ul>
+</div>
+<div class="columns is-centered">
+  <div class="column is-11-mobile is-10-tablet is-9-desktop is-8-widescreen">
+    {{#each posts as |post|}}
+    {{>post-details}}
+    {{/each}}
+  </div>
+</div>

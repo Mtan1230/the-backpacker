@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: Traveller,
-          attributes: ['username'],
+          attributes: ['username', 'image'],
         },
       ],
     });
