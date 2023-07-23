@@ -1,17 +1,24 @@
 const router = require('express').Router();
-const { Post } = require('../models');
+const { Traveller, Post } = require('../models');
 const { withAuth } = require('../utils/auth');
 
+// @desc    Dashboard
+// @route   /dashboard
 router.get('/', withAuth, async (req, res) => {
   try {
-    const postData = await Post.findAll({ where: { traveller_id: req.session.userId || req.user.id } });
+    const travellerData = await Traveller.findByPk(req.session.userId || req.user.id);
+    const traveller = travellerData.get({ plain: true });
+
+    const postData = await Post.findAll({
+      where: { traveller_id: req.session.userId || req.user.id },
+      order: [['createdAt', 'DESC']]
+    });
 
     if (postData.length) {
       const posts = postData.map((post) => post.get({ plain: true }));
-      res.render('dashboard', { posts, loggedIn: req.session.loggedIn || req.isAuthenticated() });
+      res.render('dashboard', { posts, traveller, loggedIn: req.session.loggedIn || req.isAuthenticated() });
     } else {
-      res.render('dashboard', { loggedIn: req.session.loggedIn || req.isAuthenticated() });
-
+      res.render('dashboard', { traveller, loggedIn: req.session.loggedIn || req.isAuthenticated() });
     }
   } catch (err) {
     console.log(err);

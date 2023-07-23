@@ -5,12 +5,13 @@ const upload = require('../../config/cloudinary').upload;
 
 router.post('/', withAuth, upload.single('image'), async (req, res) => {
   try {
+
     const postData = await Post.create(
       {
         title: req.body.title,
         text: req.body.content,
         traveller_id: req.session.userId || req.user.id,
-        image: req.file.path
+        image: req.file && req.file.path ? req.file.path : ''
       }
     );
 
