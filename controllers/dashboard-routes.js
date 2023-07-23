@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Post } = require('../models');
-const withAuth = require('../utils/auth');
+const { withAuth } = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
@@ -33,7 +33,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
     const postData = await Post.findByPk(req.params.id);
     if (postData) {
       const post = postData.get({ plain: true });
-      res.render('dashboard-edit', { post, loggedIn: req.session.loggedIn || req.isAuthenticated()});
+      res.render('dashboard-edit', { post, loggedIn: req.session.loggedIn || req.isAuthenticated() });
     }
   } catch (err) {
     console.log(err);

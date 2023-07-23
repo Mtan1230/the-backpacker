@@ -1,10 +1,15 @@
 const router = require('express').Router();
 const { Traveller } = require('../../models');
 
-// Signup - Create new traveller
+// @desc    Signup
+// @route   /api/travellers/signup
 router.post('/signup', async (req, res) => {
   try {
-    const travellerData = await Traveller.create(req.body);
+    const travellerData = await Traveller.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password
+    });
 
     req.session.save(() => {
       req.session.loggedIn = true;
@@ -60,14 +65,14 @@ router.post('/login', async (req, res) => {
 router.post('/logout', async (req, res, next) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
-      res.status(204).end();
+      res.redirect('/');
     });
   } else if (req.isAuthenticated()) {
     req.logout((err) => {
       if (err) {
         return next(err);
       }
-      res.status(204).end();
+      res.redirect('/');
     });
   } else {
     res.status(404).end();

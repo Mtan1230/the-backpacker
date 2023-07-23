@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const { Traveller, Post, Comment } = require('../models');
+const { withAuth, isGuest } = require('../utils/auth');
 
+// @desc    homepage
+// @route   GET /
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -11,14 +14,23 @@ router.get('/', async (req, res) => {
         },
       ],
     });
-
     const posts = postData.map((post) =>
       post.get({ plain: true })
     );
-    res.render('homepage', {
-      posts,
-      loggedIn: req.session.loggedIn || req.isAuthenticated(),
-    });
+
+    if (req.session.loggedIn || req.isAuthenticated()) {
+      const travellerData = await Traveller.findByPk(req.session.userId || req.user.id);
+      const traveller = travellerData.get({ plain: true });
+
+      res.render('homepage', {
+        posts, traveller, loggedIn: req.session.loggedIn || req.isAuthenticated(),
+      });
+    } else {
+      res.render('homepage', {
+        posts, loggedIn: req.session.loggedIn || req.isAuthenticated(),
+      });
+    }
+
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -52,13 +64,34 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
+// @desc    Signup page
+// @route   /signup
+router.get('/signup', isGuest, (req, res) => {
+  res.render('signup');
+});
+
 router.get('/login', (req, res) => {
   if (req.session.loggedIn || req.isAuthenticated()) {
     res.redirect('/');
-    return;
   }
-
   res.render('login');
+});
+
+router.get('/logout', async (req, res, next) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.redirect('/');
+    });
+  } else if (req.isAuthenticated()) {
+    req.logout((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect('/');
+    });
+  } else {
+    res.status(404).end();
+  }
 });
 
 module.exports = router;

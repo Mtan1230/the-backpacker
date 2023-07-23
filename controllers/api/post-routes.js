@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Post, Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { withAuth } = require('../../utils/auth');
 const upload = require('../../config/cloudinary').upload;
 
 router.post('/', withAuth, upload.single('image'), async (req, res) => {

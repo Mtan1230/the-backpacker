@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const { Trip } = require('../models');
-const withAuth = require('../utils/auth');
+const { withAuth } = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
-    const tripData = await Trip.findAll({ where: { traveller_id: req.session.id}});
+    const tripData = await Trip.findAll({ where: { traveller_id: req.session.id } });
 
     if (tripData.length) {
       const trips = tripData.map((trip) => trip.get({ plain: true }));

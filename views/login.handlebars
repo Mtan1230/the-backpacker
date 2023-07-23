@@ -1,4 +1,4 @@
-<div class="row justify-space-between-md">
+{{!-- <div class="row justify-space-between-md">
   <div class="login-card">
     <h2 class="page-title">Login</h2>
     <form class="form login-form">
@@ -42,4 +42,40 @@
   </div>
 </div>
 
-<script src="./js/login.js"></script>
+<script src="./js/login.js"></script> --}}
+
+<section class="section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <h1 class="title has-text-centered">Login</h1>
+          <div class="box">
+            <form action="#" method="POST">
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input class="input" type="email" name="email" placeholder="Your Email" required>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input class="input" type="password" name="password" placeholder="Your Password" required>
+                </div>
+              </div>
+
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-primary" type="submit">Login</button>
+                </div>
+                <div class="control">
+                  <button class="button is-text" type="reset">Clear</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
