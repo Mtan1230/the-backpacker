@@ -47,7 +47,7 @@
         </div>
         {{/if}}
       </div>
-      
+
       {{#unless loggedIn}}
       <div class="navbar-end">
         <div class="navbar-item">
@@ -64,6 +64,17 @@
       {{/unless}}
     </div>
   </nav>
+
+  <script>
+    (function () {
+      var burger = document.querySelector('.navbar-burger');
+      var menu = document.querySelector('.navbar-menu');
+      burger.addEventListener('click', function () {
+        burger.classList.toggle('is-active');
+        menu.classList.toggle('is-active');
+      });
+    })();
+  </script>
 
   <main>
     <div class="container">
