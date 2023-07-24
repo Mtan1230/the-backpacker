@@ -1,8 +1,15 @@
-# the-backpacker
+# The Backpacker
+
+[![License badge](https://img.shields.io/badge/liscense-MIT-blue)](./LICENSE) 
+
 ## Project Overview
-An integrated trip planning platform for professional travelers. It is an all-in-one travel sharing venue/blog where AI can randomly generate travel destinations/maps
+
+An integrated trip planning platform for professional travelers. It is an all-in-one travel sharing venue/blog where AI can randomly generate travel destinations/maps 
+
 ## User Story
-For those who want to travel and share their travel experience, this is a social platform for all travelers to express their traveling experiences by posting comments, tips and pictures! It also provide the option to plan a travel itinerary, created using Amadeus RESTful API, on the traveller choices of departure location, destination and departure date.
+
+For those who want to travel and share their travel experience, this is a social platform for all travelers to express their traveling experiences by posting comments, tips and pictures! It also provide the option to plan a travel itinerary, created using Amadeus RESTful API, on the traveller choices of departure location, destination and departure date. 
+
 ## Tech stack
 
 <img align="left" alt="Html" src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
@@ -15,6 +22,7 @@ For those who want to travel and share their travel experience, this is a social
 <img  alt="medium" src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" /> 
 
 ### The practical knowledge that we gain through this project:
+
 - Java Script Coding and DOM.
 - Css styles
 - Creating layouts and page design
@@ -22,6 +30,29 @@ For those who want to travel and share their travel experience, this is a social
 - Using APIs and creating requests to external urls
 
 ## Deployment link on Heroku 
-## Setup and Run the Project
 
+https://guarded-headland-26840-8a69e6da1e2d.herokuapp.com/
 
+## Screenshots
+
+![screen-capture](public/images/screencapture.png)
+
+## License  
+
+This project is licensed under the [MIT license](LICENSE).  
+
+## Credits  
+
+### Collaborators
+
+* [Marie Luron](https://github.com/mluron-ArxFjs)
+* [Saeeda Batool](https://github.com/Saeeda14)
+* [Lukas Zimmermann](https://github.com/mastalukeremix)
+
+### Acknowledgments
+
+* [Traversy Media](https://www.youtube.com/watch?v=SBvmnHTQIPY)
+
+## Questions  
+
+If you have any questions about the repository, open an issue or contact me directly at [m.tan1230@gmail.com](mailto:m.tan1230@gmail.com). You can find more of my work at [Mtan1230](https://github.com/Mtan1230).
