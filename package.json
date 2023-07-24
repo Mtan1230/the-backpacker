@@ -14,7 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-
     "amadeus": "^8.1.0",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.37.3",
