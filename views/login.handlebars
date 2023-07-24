@@ -1,45 +1,45 @@
-<div class="row justify-space-between-md">
-  <div class="login-card">
-    <h2 class="page-title">Login</h2>
-    <form class="form login-form">
-      <div class="form-group">
-        <label for="email-login">Email:</label>
-        <input class="form-input" type="text" id="email-login" />
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <h1 class="title has-text-centered">Login</h1>
+        <div class="box">
+          <form id="form-login">
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <input id="email-login" class="input" type="email" name="email" placeholder="Your Email" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control">
+                <input id="password-login" class="input" type="password" name="password" placeholder="Your Password"
+                  required>
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-primary" type="submit">Login</button>
+              </div>
+              <div class="control">
+                <button class="button is-text" type="reset">Clear</button>
+              </div>
+            </div>
+
+            <!-- Google Sign-In Button -->
+            <div class="field">
+              <a href="api/auth/google" class="google-login-button">
+                <i class="fab fa-google google-icon"></i> Log In With Google
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="password-login">Password:</label>
-        <input class="form-input" type="password" id="password-login" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">login</button>
-      </div>
-    </form>
-    <div class="section">
-      <a href="/auth/google" class="btn red darken-1">
-        <i class="fab fa-google left"></i> Log In With Google
-      </a>
     </div>
   </div>
-  <div class="login-card">
-    <h2 class="page-title">Signup</h2>
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="username-signup">Username:</label>
-        <input class="form-input" type="text" id="username-signup" />
-      </div>
-      <div class="form-group">
-        <label for="email-signup">Email:</label>
-        <input class="form-input" type="text" id="email-signup" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">Password:</label>
-        <input class="form-input" type="password" id="password-signup" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">signup</button>
-      </div>
-    </form>
-  </div>
-</div>
+</section>
 
-<script src="./js/login.js"></script>
+<script src="/js/login.js"></script>

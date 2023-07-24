@@ -1,23 +1,36 @@
-<section class="card">
-  <header>
-    <h3>{{post.title}}</h3>
-    <span>Powered by {{post.traveller.username}} on {{format_date post.createdAt}} at {{format_time post.createdAt}}</span>
-  </header>
-  <img src="{{image}}" alt="">
-  <p>{{post.text}}</p>
-</section>
-{{#each post.comments as |comment|}}
-{{> comment-details}}
-{{/each}}
-{{#if loggedIn}}
-<section class="card">
-  <header>
-    <h3>Comment</h3>
-  </header>
-  <div>
-  <textarea name="comment" id="comment" rows="5"></textarea>
-  <button class="btn comment-btn">Submit</button>
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-11-mobile is-10-tablet is-9-desktop is-8-widescreen">
+        <h3 class="title is-3">{{post.title}}</h3>
+        {{#if post.image}}
+        <figure class="image is-16by9">
+          <img src="{{post.image}}" alt="">
+        </figure>
+        {{/if}}
+        <p class="mt-3"><strong>Posted by: </strong>{{post.traveller.username}} on {{format_date post.createdAt}}</p>
+        <p class="mt-3">{{post.text}}</p>
+        <br>
+
+        {{#if loggedIn}}
+        <section class="card">
+          <div class="card-content">
+            <header>
+              <p><strong>Add Comment</strong></p>
+            </header>
+            <div>
+              <textarea class="textarea my-2" id="comment" placeholder=""></textarea>
+              <button class="button is-primary comment-btn">Normal</button>
+            </div>
+          </div>
+        </section>
+        <script src="/js/addComment.js"></script>
+        {{/if}}
+
+        {{#each post.comments as |comment|}}
+        {{> comment-details}}
+        {{/each}}
+      </div>
+    </div>
   </div>
 </section>
-<script src="/js/addComment.js"></script>
-{{/if}}

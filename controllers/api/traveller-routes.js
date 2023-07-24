@@ -1,10 +1,15 @@
 const router = require('express').Router();
 const { Traveller } = require('../../models');
 
-// Signup - Create new traveller
+// @desc    Signup
+// @route   /api/travellers/signup
 router.post('/signup', async (req, res) => {
   try {
-    const travellerData = await Traveller.create(req.body);
+    const travellerData = await Traveller.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password
+    });
 
     req.session.save(() => {
       req.session.loggedIn = true;
@@ -20,7 +25,8 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// Login
+// @desc    Login
+// @route   /api/travellers/login
 router.post('/login', async (req, res) => {
   try {
     const travellerData = await Traveller.findOne({
@@ -34,8 +40,8 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password. Please try again!' });
       return;
     }
-    const validPassword = await travellerData.checkPassword(req.body.password);
 
+    const validPassword = await travellerData.checkPassword(req.body.password);
     if (!validPassword) {
       res
         .status(400)
@@ -56,18 +62,19 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Logout
-router.post('/logout', async (req, res, next) => {
+// @desc    Logout
+// @route   /api/travellers/logout
+router.get('/logout', (req, res, next) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
-      res.status(204).end();
+      res.redirect('/');
     });
   } else if (req.isAuthenticated()) {
-    req.logout((err) => {
-      if (err) {
-        return next(err);
+    req.logout((error) => {
+      if (error) {
+        return next(error);
       }
-      res.status(204).end();
+      res.redirect('/');
     });
   } else {
     res.status(404).end();

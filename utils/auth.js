@@ -6,4 +6,12 @@ const withAuth = (req, res, next) => {
   }
 };
 
-module.exports = withAuth;
+const isGuest = (req, res, next) => {
+  if (!(req.session.loggedIn || req.isAuthenticated())) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+};
+
+module.exports = { withAuth, isGuest };

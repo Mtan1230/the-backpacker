@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const { Post, Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { withAuth } = require('../../utils/auth');
 const upload = require('../../config/cloudinary').upload;
 
+// @desc    Add post
+// @route   POST /api/post
 router.post('/', withAuth, upload.single('image'), async (req, res) => {
   try {
     const postData = await Post.create(
@@ -10,7 +12,7 @@ router.post('/', withAuth, upload.single('image'), async (req, res) => {
         title: req.body.title,
         text: req.body.content,
         traveller_id: req.session.userId || req.user.id,
-        image: req.file.path
+        image: req.file && req.file.path ? req.file.path : ''
       }
     );
 
@@ -23,12 +25,14 @@ router.post('/', withAuth, upload.single('image'), async (req, res) => {
   }
 });
 
+// @desc    Add comment
+// @route   POST /api/post/:id
 router.post('/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
 
     if (postData) {
-      const commentData = Comment.create({
+      const commentData = await Comment.create({
         text: req.body.message,
         traveller_id: req.session.userId || req.user.id,
         post_id: parseInt(req.params.id)
@@ -41,14 +45,18 @@ router.post('/:id', withAuth, async (req, res) => {
   }
 });
 
-router.put('/:id', withAuth, async (req, res) => {
+// @desc    Update post
+// @route   PUT /api/post/:id
+router.put('/:id', withAuth, upload.single('image'), async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
 
     if (postData) {
-      const updatedData = Post.update({
+      const updatedData = await Post.update({
         title: req.body.title,
-        text: req.body.content
+        text: req.body.content,
+        image: req.file && req.file.path ? req.file.path : ''
+
       }, {
         where: { id: req.params.id }
       });
@@ -60,9 +68,11 @@ router.put('/:id', withAuth, async (req, res) => {
   }
 });
 
+// @desc    Delete post
+// @route   DELETE /api/post/:id
 router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const deletedData = Post.destroy({
+    const deletedData = await Post.destroy({
       where: { id: req.params.id }
     });
     res.status(200).json(deletedData);

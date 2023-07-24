@@ -1,6 +1,8 @@
-<section class="card">
+<section class="card mt-2">
+  <div class="card-content p-2">
   <header>
-    <p>Commented by {{traveller.username}} on {{format_date createdAt}} at {{format_time createdAt}}</p>
+    <p><strong>Commented by: </strong>{{traveller.username}} on {{format_date createdAt}} at {{format_time createdAt}}</p>
   </header>
   <p>{{text}}</p>
+  </div>
 </section>

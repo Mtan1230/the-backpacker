@@ -5,31 +5,72 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> The BackPacker</title>
-  <link rel="stylesheet" type="text/css" href="/css/jass.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
-  <header>
-    <h1>The BackPacker</h1>
-  </header>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/plan-your-trip">Plan Your Trip!</a>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/login">Login</a>
-    {{/if}}
+  <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="/images/title-1.png" width="250" height="50">
+      </a>
+
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/plan-your-trip">
+          Plan Your Trip!
+        </a>
+
+        {{#if loggedIn}}
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="/dashboard">
+            Welcome! {{traveller.username}}
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="/dashboard">
+              Dashboard
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="/api/travellers/logout">
+              Logout
+            </a>
+          </div>
+        </div>
+        {{/if}}
+      </div>
+      
+      {{#unless loggedIn}}
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary" href="/signup">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light" href="/login">
+              Log in
+            </a>
+          </div>
+        </div>
+      </div>
+      {{/unless}}
+    </div>
   </nav>
+
   <main>
     <div class="container">
       {{{body}}}
     </div>
   </main>
-  {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
+
 </body>
+
 </html>

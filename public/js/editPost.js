@@ -6,16 +6,20 @@ const updatePost = async (e) => {
 
   const title = document.querySelector('#title').value.trim();
   const content = document.querySelector('#content').value.trim();
+  const image = document.querySelector('#image').files[0];
 
   if (title && content && (title !== titleValue || content !== contentValue)) {
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('image', image);
 
     const endpoint = window.location.pathname.split('/');
     const id = endpoint[endpoint.length - 1];
 
     const res = await fetch(`/api/post/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, content }),
+      body: formData,
     });
 
     if (res.ok) {

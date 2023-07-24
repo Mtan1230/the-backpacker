@@ -1,6 +1,17 @@
-<section class="card" >
-  <a href="/dashboard/post/{{id}}">
-    <h2>{{title}}</h2>
-    <span>{{format_date createdAt}}</span>
-  </a>
-</section>
+<div class="card columns is-centered my-2">
+  <div class="card-content column mx-3">
+    <a href="/dashboard/post/{{id}}">
+      <h4 class="title is-4 mb-2">{{title}}</h4>
+    </a>
+    <p class="content">{{truncate text 300}}</p>
+    <p>{{format_date createdAt}}</p>
+  </div>
+
+  {{#if image}}
+  <div class="card-image column">
+    <figure class="image is-3by2">
+      <img src="{{image}}" alt="">
+    </figure>
+  </div>
+  {{/if}}
+</div>

@@ -1,10 +1,30 @@
-<section class="card">
-  <a href="/post/{{id}}">
-    <header>
-      <h3>{{title}}</h3>
-      <span>Powered by {{traveller.username}} on {{format_date createdAt}}</span>
-    </header>
-  </a>
-  <img src="{{image}}" alt="">
-  <p>{{text}}</p>
-</section>
+<div class="card columns is-centered my-2">
+  <div class="card-content column mx-3">
+    <div class="media">
+      {{#if traveller.image}}
+      <div class="media-left">
+        <figure class="image is-32x32">
+          <img class="is-rounded" src="{{traveller.image}}" alt="user avatar">
+        </figure>
+      </div>
+      {{/if}}
+      <div class="media-content">
+        <div class="content is-medium">{{traveller.username}}</div>
+      </div>
+    </div>
+
+    <a href="/post/{{id}}">
+      <h4 class="title is-4 mb-2">{{title}}</h4>
+    </a>
+    <p class="content">{{truncate text 300}}</p>
+    <p>{{format_date createdAt}}</p>
+  </div>
+
+  {{#if image}}
+  <div class="card-image column">
+    <figure class="image is-3by2">
+      <img src="{{image}}" alt="">
+    </figure>
+  </div>
+  {{/if}}
+</div>
