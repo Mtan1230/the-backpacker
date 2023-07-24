@@ -1,26 +1,81 @@
-<!-- Section Trip Planner -->
-<section class="card-planner" id="planner">
-    <header>
-        <h2>Plan your trip!
-        </h2>
+<style>
+    html {
+        background-image: url("/images/shutterstock_102245596.jpeg");
+    }
+</style>
+
+<section class="card mt-5 planner" id="planner">
+    <header class="card-header">
+        <p class="card-header-title">Plan your trip!</p>
     </header>
-    <div class="form-content">
-        <form class="form-content" id="form">
-            <input id="leavingFrom" type="text" class="form-input input-from" name="from" placeholder="departing from:"
-                autocomplete="on" required>
-            <input id="destination" type="text" class="form-input input-to" name="to" placeholder="traveling to:"
-                autocomplete="on" required>
-            <label class="date-label" for="date">Departing on</label>
-            <input id="departure" type="date" class="form-input input-date" name="date" required>
-            <button id="submit-btn" type="submit" class="input-submit" name="submit">Submit</button>
+    <div class="card-content">
+        <form class="form" id="form">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Departing from:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input id="leavingFrom" type="text" class="input" name="from" placeholder="Departing from:"
+                                autocomplete="on" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Traveling to:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input id="destination" type="text" class="input" name="to" placeholder="Traveling to:"
+                                autocomplete="on" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Departing on:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input id="departure" type="date" class="input" name="date" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <!-- Empty div for alignment -->
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <button id="submit-btn" type="submit" class="button is-primary"
+                                name="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </form>
     </div>
-    <div class="trip-result">
-        <p>Total price in economy class, in USD: <span id="trip-result-price" type="text" class="spanclass"></span></p>
-        <p>Your Itineraries are listed below: <span id="trip-result-itineraries" type="text" class="spanclass"></span></p>
-            <p>Departure: <span id="trip-result-departure" type="date" class="yyyy-MM-dd'T'HH:mm:ss.SSS"></span></p>
-            <p>Arrival: <span id="trip-result-arrival" type="date" class="yyyy-MM-dd'T'HH:mm:ss.SSS"></span></p>
-        </form>
+
+    <div class="card-content trip-result">
+        <p><strong class="is-size-5">Total price in economy class, in USD:</strong> <span id="trip-result-price"
+                class="spanclass"></span></p>
+        <p><strong class="is-size-5">Your Itineraries are listed below:</strong> <span id="trip-result-itineraries"
+                class="spanclass"></span></p>
+        <p><strong class="is-size-5">Departure:</strong> <span id="trip-result-departure" class="spanclass"></span></p>
+        <p><strong class="is-size-5">Arrival:</strong> <span id="trip-result-arrival" class="spanclass"></span></p>
     </div>
 </section>
+
 <script src="/js/trip-handler.js"></script>
